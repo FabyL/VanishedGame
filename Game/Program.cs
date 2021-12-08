@@ -24,7 +24,11 @@ namespace Game
 
             var Auswahl = Console.ReadLine();
 
-            if (Auswahl == "Bett")
+            if (Auswahl == "Quit")
+            {
+                SpielBeenden(yuzo);
+            }
+            else if (Auswahl == "Bett")
             {
                 GeheZumStartBett(yuzo);
             }
@@ -43,17 +47,34 @@ namespace Game
             }
             else
             {
-                Console.WriteLine("Bitte gebe nur: Bett, Korb oder Flasche ein.");
+                Console.WriteLine("Bitte gebe nur die bereits genannten Commands ein.");
                 Spielen(yuzo);
             }
-        }
-        
-        
+        }      
         public static void EinführungsText(Yuzo yuzo)
         {
             Console.WriteLine("Du befindest dich in einer Höhle und dein schädel brummt.");
             Console.WriteLine("Du kannst dich an nichts mehr erinnern und siehst dich um.");
             Console.WriteLine("Du siehst: Ein improvisiertes Bett, einen gefüllten Tragekorb und eine Kürbisflasche.");
+            Console.WriteLine("Wenn du das Spiel beenden möchtest, schreibe: Quit");
+        }
+        public static void SpielBeenden(Yuzo yuzo)
+        {
+            Console.WriteLine("Möchtest du das Spiel beenden? (Ja/Nein)");
+            var Auswahl = Console.ReadLine();
+            if (Auswahl == "Ja")
+            {
+                Console.WriteLine("Drücke eine beliebige Taste um das Spiel zu beenden.");
+            }
+            else if (Auswahl == "Nein")
+            {
+                Spielen(yuzo);
+            }
+            else
+            {
+                Console.WriteLine("Bitte wähle eine Möglichkeit aus.");
+                SpielBeenden(yuzo);
+            }
         }
         public static void GeheZumStartBett(Yuzo yuzo)
         {
@@ -147,8 +168,5 @@ namespace Game
                 Console.WriteLine("Du hast keine Waffe.");
             }
         }
-
-
-
     }
 }
